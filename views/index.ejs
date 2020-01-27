@@ -2,10 +2,96 @@
 <html>
   <head>
     <title><%= title %></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <style>
+      body,html{
+        margin: 0px;
+        padding: 0px;
+      }
+
+      .fullImage{
+        background-image: url('/images/farm.jpg');
+        height: 100vh;
+        width: 100%;
+        background-size:100% 100%;
+        background-position: center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-blend-mode: multiply;
+        background-color: #ffffff;
+        filter: blur(0px);
+        animation: blur 3s ease-in 2s 1 forwards;
+        position: relative;
+}
+
+  @keyframes blur{
+    from{filter: blur(0px);background-color: #ffffff;}
+    to{filter: blur(3px);background-color: #7dcace;}
+  }
+
+  #loader{
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  background: #ffffff url('/images/loader.gif') no-repeat center;
+  z-index: 99999;
+}
+
+  .content{
+    position: absolute;
+    top: 5%;
+    left: 40%;
+  }
+
+  .content h2{
+    font-size: 54px;
+    letter-spacing: 2px;
+    font-weight: 500;
+    font-family: monospace;
+  }
+
+  .content p{
+    width: 80%;
+    text-align: left;
+    font-size: 24px;
+    letter-spacing: 1px;
+  }
+
+  .btn{
+    font-size: 24px;
+    margin: 1% 2%;
+    /* padding: 2px; */
+  }
+
+  .btn a{
+    color: white;
+  }
+
+  .btn a:hover{
+    text-decoration: none;
+  }
+    </style>
   </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to smart irrigation system</p>
+  <body onload="loader()">
+    <div id="loader">
+    </div>
+    <div class="fullImage"></div>
+   <div class="content">
+    <h2>Smart Irrigation System</h2>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam explicabo voluptate maxime. Commodi blanditiis illo vero voluptate, exercitationem soluta voluptates. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam explicabo voluptate maxime. Commodi blanditiis illo vero voluptate, exercitationem soluta voluptates</p>
+    <button class="btn btn-primary"><a href="#">How it work?</a></button>
+    <button class="btn btn-success"><a href="/form">Register now</a></button>
+   </div>
+
+   <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+   crossorigin="anonymous"></script>  
+   <script>
+              function loader(){
+              setInterval(function(){
+              $("#loader").fadeOut();
+                  },1000);
+                }
+   </script>
   </body>
 </html>
