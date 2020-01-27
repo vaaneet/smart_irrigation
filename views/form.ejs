@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+      *{
+          margin: 0px;
+          padding: 0px;
+          /* overflow: auto; */
+      }  
+
+      .form-group label{
+          text-align: left !important;
+      }
+      .wrapper{
+          width: 100%;
+          margin-top: 4%;
+      }
+
+      .card{
+          width: 35% !important;
+          margin: 0px auto;
+      }
+
+      form{
+          text-align: center;
+      }
+
+      .remember{
+        width: 40%;
+        margin: 4% auto;
+      }
+
+      .remember h4,h4{
+          text-align: center;
+      }
+
+      .list-group-item{
+          margin: 2%;
+      }
+
+      .form-group{
+          margin-top: 8% !important;
+      }
+
+      @media(max-width: 968px){
+        .card{
+          width: 80% !important;
+          margin: 0px auto;
+      }  
+      }
+    </style>
+    
+</head>
+<body>
+    <div class="wrapper">
+        <h4>Register yourself at Smart Irrigation system</h4>
+    
+       <div class="card p-4">
+        <form action="/form" method="POST">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Name</label>
+                <input name="name" type="text" minlength="3" class="form-control" aria-describedby="emailHelp" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Phone number</label>
+                <input name="number" type="number" minlength="6000000000" maxlength="9999999999" class="form-control" aria-describedby="emailHelp" placeholder="Enter your phone number">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email id</label>
+                <input name="email" type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter your email ID">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Crop Type</label>
+                <select class="custom-select" name="crop">
+                    <option selected>Select the crop</option>
+                    <option value="wheat">Wheat</option>
+                    <option value="paddy">Paddy</option>
+                    <option value="maize">Maize</option>
+                    <option value="Rice">Rice</option>
+                    <option value="Millet">Millet</option>
+                    <option value="Legume">Legume(dal)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Area</label>
+                <input name="area" type="number" class="form-control" aria-describedby="emailHelp" placeholder="Enter your irrigation area (m2)">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Time of Irrigation</label>
+                <input name="time" type="datetime-local" class="form-control" aria-describedby="emailHelp" placeholder="Enter the time of irrigation">
+            </div>
+            
+            <button type="submit" class="btn btn-success">Submit</button>
+          </form>
+       </div>
+      
+
+      <div class="remember" style="overflow: auto;">
+        <h4>Key points to remember</h4>
+        <ul class="list-group">
+         <li class="list-group-item list-group-item-danger">Your time of irrigation will be updated if you enter the same name,email and phone number</li>
+         <li class="list-group-item list-group-item-danger"> Data enetered must be authentic</li>
+         <li class="list-group-item list-group-item-danger"> User must register atleast 30 min before the time of irrigation</li>
+       </ul>
+      </div>
+    </div>
+</body>
+</html>
