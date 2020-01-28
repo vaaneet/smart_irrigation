@@ -6,6 +6,7 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 
 var indexRouter = require('./routes/index');
+var apiRouter = require('./Rest/apiRoutes');
 
 var app = express();
 
@@ -30,6 +31,7 @@ mongoose.connect('mongodb+srv://smart_irrigator:Abf1CF5dsoPAYeLG@sih2020-94zha.m
 });
 
 app.use('/', indexRouter);
+app.use('/api/', apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

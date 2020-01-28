@@ -10,4 +10,7 @@ router.get('/form',controller.getForm);
 
 router.post('/form',controller.postForm);
 
+
+router.get('/getAllfarmers',controller.getAllfarmers);
+
 module.exports = router;

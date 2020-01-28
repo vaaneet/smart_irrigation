@@ -52,25 +52,37 @@ exports.postForm = (req,res,next) => {
                         });
                 }
                 else{
-                    Crop.create({
-                        name:req.body.name,
-                        email:req.body.email,
-                        number:req.body.number,
-                        status:2,
-                        cropType:req.body.crop,
-                        cropArea:req.body.area,
-                        irrigationTime:req.body.time,
-                        createdAt:Date.now(),
-                        updatedAt:Date.now(),
-                        updatedBy:'Web App'
-                    })
+                    Crop.findOne({$or:[{number:req.body.number},{email:req.body.email}]})
                     .then((result) => {
-                        console.log(result);
-                        res.send(result);
+                        if(result){
+                            return res.json({msg:'Please use different email or number'});
+                        }
+                        else{
+                            Crop.create({
+                                name:req.body.name,
+                                email:req.body.email,
+                                number:req.body.number,
+                                status:2,
+                                cropType:req.body.crop,
+                                cropArea:req.body.area,
+                                irrigationTime:req.body.time,
+                                createdAt:Date.now(),
+                                updatedAt:Date.now(),
+                                updatedBy:'Web App'
+                            })
+                            .then((result) => {
+                                console.log(result);
+                                res.send(result);
+                            })
+                            .catch((err) => {
+                                console.log(err);
+                            });
+                        }
                     })
                     .catch((err) => {
                         console.log(err);
-                    });
+                    })
+                    
                 }
             })
             .catch((err) => {
@@ -86,4 +98,52 @@ exports.postForm = (req,res,next) => {
    }
 
 
+}
+
+
+exports.getApiTest = (req,res,next) => {
+    return res.json({msg:'Its working if you get this on your browser'});
+}
+
+exports.getRecentFarmer = (req,res,next) => {
+    Crop.find({status:2}).sort({irrigationTime:1})
+    .then((result) => {
+        if(result.length === 0){
+            return res.json({msg:'Sorry no farmers as of now'});
+        }
+        else{
+            return res.json({msg:'Recent one',farmerObject:result[0]})
+        }
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+}
+
+
+exports.updateRecentFarmer = (req,res,next) => {
+    console.log('updating farmer');
+    Crop.findOne({_id:req.params.id},{$set:{
+        moistureContent:req.body.moisture,
+        updatedAt:Date.now(),
+        status:1,
+        updatedBy:'API'
+    }})
+    .then((result) => {
+        console.log(result);
+        return res.json({msg:'Farmer moisture content updated'});
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+}
+
+exports.getAllfarmers = (req,res,next) => {
+    Crop.find({})
+    .then((result) => {
+        return res.json({farmers:result});
+    })
+    .catch((err) => {
+        console.log(err);
+    });
 }

@@ -19,7 +19,7 @@ const cropSchema = new Schema({
         default:null
     },
     status:{
-        type:Number, // status 1- if irrigation done 2- waiting for time
+        type:Number, // status 1- if irrigation done 2- waiting for irrigation
         required:true
     },
     cropType:{
